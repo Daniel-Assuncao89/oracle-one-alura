@@ -1,0 +1,90 @@
+<meta charset="UTF-8">
+
+<input/>
+<button> Compare com o meu segredo </button>
+<script> 
+    var button = document.querySelector("button");
+
+    button.onclick = verifica;
+	
+    var input = document.querySelector("input");
+    input.focus();
+
+    var segredo = sorteiaNumeros(3);
+    console.log(segredo)
+
+
+    function sorteiaNumeros(quantidade){
+    	var segredos = [];
+    	for ( let i = 0; i < quantidade; i++ ){
+    		segredos.push(sort(10));
+    	}
+
+    	var i = 1
+    	for( s of segredos){
+    		if(s == segredos[i]){
+    			console.log("repetido: " + segredos)
+    			segredos[i] = sort(10)
+    			console.log("Alterado: " + segredos)
+    		}
+    		i++;
+    	}
+
+    	return segredos;
+    }
+
+    function verifica() {
+
+      var validacao = false;
+
+      for(s of segredo){
+      	if ( s == input.value){
+      		show("Acertou")
+      		validacao = true;
+      		break;
+      	} 
+      }
+      if(validacao == false){
+      	show("Errou")
+      }
+
+
+    }
+
+	function sort(n){
+		return Math.round(Math.random() * n);
+	}
+
+	function show(phrase){
+		document.write(phrase);
+		jumpLine();
+	}
+
+	function jumpLine(){
+		document.write("<br><hr><br>");
+	}
+
+	function tentativa(numeroUsuario, numeroAdivinhacao){
+		if( numeroUsuario > numeroAdivinhacao){
+			show("Você chutou um numero maior: " + numeroUsuario);
+			alert("Você chutou um numero maior");
+		} else if (numeroUsuario < numeroAdivinhacao){
+			show("Voce chutou um numero menor: " + numeroUsuario);
+			alert("Voce chutou um numero menor")
+		} else if ( numeroUsuario == numeroAdivinhacao){
+			show("Parabens, você acertou!: " + numeroUsuario);
+		}
+	}
+
+/*	const guessNumber = sort(10);
+	var userNumber = parseInt(prompt("Insira sua adivinhação."));
+	tentativa(userNumber, guessNumber);
+
+	while(userNumber != guessNumber){
+		userNumber = parseInt(prompt("Insira sua adivinhação."));
+
+		tentativa(userNumber, guessNumber);
+	}*/
+
+
+</script>
