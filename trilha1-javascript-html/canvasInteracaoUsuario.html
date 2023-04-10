@@ -1,0 +1,71 @@
+<canvas width="600"  height="400"></canvas>
+<br/>
+Escolha uma cor <input type="color">
+
+<script>
+    var tela = document.querySelector('canvas');
+    var cores = document.querySelector("input");
+    var pincel = tela.getContext('2d');
+    // var cores = ['blue', 'yellow', 'red', 'green'];
+    var indexCores = 0;
+    var raio = 10;
+    var paint = false;
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    function desenhaCirculo(evento) {
+
+/*        alert('Cliquei');
+        console.log(evento);*/
+
+        var x = evento.pageX - tela.offsetLeft; // pra considerar apenas o quadrado do canvas
+        var y = evento.pageY - tela.offsetTop;
+        // var raio = 10;
+        if (evento.shiftKey && raio <= 40) { // Se o evento for chamado segurando a tecla SHIFT
+            raio += 10;
+        } else if (evento.altKey && raio > 10){
+            raio -= 5;
+        }
+        pincel.fillStyle = cores.value;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * 3.14);
+        pincel.fill();
+        console.log(x + ',' + y)
+
+
+    }
+
+    function mudaCor() {
+        indexCores++
+        console.log(indexCores)
+        if(indexCores == cores.length){
+            indexCores = 0;
+        }
+        return false; // Desabilita o menu contextual qdo clicar com o botao direito.
+    }
+
+   function desenhaCirculo2(event) {
+        if(paint) {
+            var x = event.pageX - tela.offsetLeft;
+            var y = event.pageY - tela.offsetTop;
+            pincel.fillStyle = cores.value;
+            pincel.beginPath();
+            pincel.arc(x, y, raio, 0, 2 * 3.14);
+            pincel.fill();
+        }
+        console.log(x + ',' + y)
+    }
+
+    /*
+    onclick armazena o codigo da função, por isso associamos sem o parenteses. Dessa forma, o codigo fica linkado ao evento onclick e vai ser ele o responsavel por chamar a funcao quando este evento acontecer. (ele tbm passa o evento como parametro e para pegarmos esse evento, basta definir o nome do parametro na funcao)
+    */
+    // tela.onclick = desenhaCirculo;
+     tela.oncontextmenu = mudaCor;
+
+    tela.onmousemove = desenhaCirculo2;
+    tela.onmousedown = function (){ paint = true }
+    tela.onmouseup =  function (){ paint = false}
+
+
+</script>

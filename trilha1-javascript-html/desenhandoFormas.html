@@ -1,0 +1,84 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="600">
+	
+</canvas>
+
+<script>
+	function desenhaCreeper(){
+		var tela = document.querySelector("canvas");
+		var pincel = tela.getContext("2d");
+		//cabeça
+		pincel.fillStyle = "darkgreen"
+		pincel.fillRect(0,0,600,600)
+
+		pincel.fillStyle = "black"
+		// Olhos
+		pincel.fillRect(70,100, 150, 150)
+		pincel.fillRect(350,100, 150, 150)
+		// Nariz
+		pincel.fillRect(220,250, 130, 200)
+		// Boca
+		pincel.fillRect(130,350, 90, 300)
+		pincel.fillRect(350,350, 90, 300)
+	}
+
+	function desenhaEsquadro(){
+		var tela = document.querySelector("canvas");
+		var pincel = tela.getContext("2d");
+
+		pincel.beginPath()
+		pincel.moveTo(50, 50)
+		pincel.lineTo(50, 400)
+		pincel.lineTo(400, 400)
+		pincel.fill()
+
+		pincel.beginPath()
+		pincel.moveTo(100, 175)
+		pincel.lineTo(100, 350)
+		pincel.lineTo(275, 350)
+		pincel.fillStyle = "white"
+		pincel.fill()
+	}
+
+	function desenhaQuadrado(x, y){
+		var tela = document.querySelector("canvas");
+		var pincel = tela.getContext("2d");
+
+		pincel.fillStyle = 'green';
+        pincel.fillRect(x, y, 50, 50);
+        pincel.strokeStyle = 'black';
+        pincel.strokeRect(x, y, 50, 50);
+	}
+
+	function desenhaForma(){
+		var tela = document.querySelector("canvas");
+		var pincel = tela.getContext('2d') // informa o contexto pra tela
+		pincel.fillStyle = 'lightgrey';
+		pincel.fillRect(0, 0, 600, 400); // preenche o retangulo
+
+		pincel.fillStyle = 'green';
+		pincel.fillRect(0, 0, 200, 400);
+
+		pincel.fillStyle = 'red';
+		pincel.fillRect(400, 0, 200, 400)
+
+		// Triangulo
+		pincel.fillStyle = "yellow";
+		pincel.beginPath();
+		pincel.moveTo(300, 200);
+		pincel.lineTo(200, 400);
+		pincel.lineTo(400, 400);
+		pincel.fill();
+
+		// Circulo
+		pincel.fillStyle = 'blue'
+		pincel.beginPath();
+		pincel.arc(300, 150, 50, 0, 2 * 3.14);
+		pincel.fill();
+	}
+	
+	desenhaQuadrado(0, 0);
+	desenhaQuadrado(0, 50);
+	desenhaQuadrado(0, 100);
+</script>
