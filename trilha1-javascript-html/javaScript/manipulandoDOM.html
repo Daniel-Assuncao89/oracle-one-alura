@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elemento DOM</title>
+</head>
+<body>
+    <h1>Usando seletor do DOM</h1>
+    <ul>
+        <li>Java</li>
+        <li>Python
+            <ul>
+                <li>Django</li>
+            </ul>
+        </li>
+        <li>NodeJS</li>
+    </ul>
+    
+    <div id="conteudo" name="divConteudo" class="mensagem"></div>
+    <div name="divConteudo" class="mensagem"></div>
+    <div name="divConteudo" class="mensagem"></div>
+    <span id="novoSpan" class="novo">
+        Texto no span
+    </span>
+
+    <ul id="lista">
+        <li>Produtos</li>
+    </ul>
+
+    <ul id="timesLista"></ul>
+</body>
+<script>
+    elemento0 = document.getElementsByTagName("li")[0];
+    elemento0.innerHTML = `
+    <li> Java <ul><li> Spring Framework </li></ul></li>`
+    elemento0.style.color = "blue";
+
+    elemento1 = document.getElementsByTagName("li")[3];
+    elemento1.style.color = "red";
+
+    elementoDiv = document.getElementById("conteudo")
+    elementoDiv.innerHTML = `<p> Inserindo tag "p" dentro da div </p>`
+
+    elementoDivName = document.getElementsByName("divConteudo")[1]
+    elementoDivName.style.color = "orange"
+    elementoDivName.innerText = "<p> Inserindo com innerText </p>"
+
+    elementoDivClass = document.getElementsByClassName("mensagem")[2]
+    elementoDivClass.innerHTML = `<p> Inserindo tag "p" dentro da div 3 </p>`
+
+    elementoSpamClass = document.querySelector("span.novo"); // outras formas: #novoSpan; .novo
+    elementoSpamClass.style.color = "purple"
+    
+
+    var elemento = document.createElement("div");
+    elemento.innerText = "Incluindo texto na div criada pelo JS";
+    elemento.style.backgroundColor = "lightgreen";
+    document.body.append(elemento);
+
+    
+    var lista = document.getElementById("lista");
+    var li = document.createElement("li");
+    li.textContent = "Quem somos";
+    lista.appendChild(li);
+
+    times = ["Real Madrid", "Barcelona", "Juventus", "Atletico"];
+
+    var listaTimes = document.querySelector("#timesLista");
+
+    times.forEach(element => {
+        var create = document.createElement("li");
+        create.textContent = element;
+        create.style.border = '1px solid blue';
+        listaTimes.appendChild(create);
+        
+    });
+</script>
+</html>
